@@ -21,6 +21,8 @@ import org.junit.platform.commons.util.StringUtils;
 import java.time.Duration;
 import java.util.Objects;
 
+import static com.test.workshoptesting.util.Constants.SET_A;
+import static com.test.workshoptesting.util.Constants.SMALL_TESTS;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
-@Tag(Constants.SMALL_TESTS)
+@Tag(SMALL_TESTS)
 @Log
 class CountryTest {
     private Country country;
@@ -64,6 +66,7 @@ class CountryTest {
 
     @Test
     @DisplayName("Test country classification")
+    @Tag(SET_A)
     void itShouldClassifyTheCountry() {
         //EXECUTE
         country.classifyCountry();
@@ -71,12 +74,12 @@ class CountryTest {
         //ASSERTIONS
         assertTrue(StringUtils.isNotBlank(country.getName()));
         assertTrue(() -> StringUtils.isNotBlank(country.getName()));
-        assertFalse(Objects.isNull(country.getLabel()));
         assertEquals("Old Continent", country.getLabel());
     }
 
     @Test
     @DisplayName("Test country classification - with Assumptions")
+    @Tag(SET_A)
     void itShouldClassifyTheCountry_withAssumptions_NULL() {
         assumingThat
                 (() -> Objects.isNull(country.getContinent()),
@@ -142,7 +145,7 @@ class CountryTest {
 
     @Test
     @DisplayName("Test getting some exception")
-    void testException(){
+    void testException() {
         assertThrows(
                 IllegalStateException.class,
                 TestCase::getSomeException);
@@ -156,11 +159,11 @@ class CountryTest {
         private String name;
         private int caseNumber;
 
-        public static void getSomeException(){
+        public static void getSomeException() {
             throw new IllegalStateException("Not implemented yet");
         }
 
-        public static void runMethodNoExceptions(){
+        public static void runMethodNoExceptions() {
             log.info("This method does not throw any exception");
         }
 

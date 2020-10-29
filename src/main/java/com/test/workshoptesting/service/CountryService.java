@@ -13,11 +13,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CountryService {
     private final CountryRepository countryRepository;
+    private String somePrivateField;
 
     public List<Country> getAllCountries() {
         return countryRepository.readAllCountries().stream()
                 .map(this::classifyCountry)
                 .collect(Collectors.toList());
+    }
+
+    public Country readByName(String countryName){
+        return countryRepository.readByName(countryName);
     }
 
     private Country classifyCountry(Country country) {
