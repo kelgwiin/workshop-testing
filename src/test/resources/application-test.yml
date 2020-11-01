@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: Testing Workshop - Getting the title using test profile
+
+app:
+  suffix: suffix from properties
